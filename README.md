@@ -1,7 +1,7 @@
-# Remote MYSQL Local Database Dumps
-## Does automated daily dumps of your remote MYSQL database to your local machine and pings you on Discord
+# Backup Mysql Database Dump
+## Auto Dump Database Setiap Hari
 
-### Features
+### Fitur
 - Melakukan dump database MySQL remote (jarak jauh) langsung ke dalam direktori backups.
 - Mengirimkan notifikasi ke saluran (channel) Discord Anda melalui webhook.
 - Menghapus cadangan (backup) lama secara otomatis setelah melewati jumlah hari tertentu untuk menghemat ruang penyimpanan pada disk lokal Anda.
