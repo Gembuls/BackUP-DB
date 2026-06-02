@@ -2,24 +2,24 @@
 ## Does automated daily dumps of your remote MYSQL database to your local machine and pings you on Discord
 
 ### Features
-- Dumps your remote MYSQL database into the `backups` directory.
-- Sends you notifications in a Discord channel through a webhook.
-- Automatically deletes old backups after a certain number of days to clear space on your local disk.
+- Melakukan dump database MySQL remote (jarak jauh) langsung ke dalam direktori backups.
+- Mengirimkan notifikasi ke saluran (channel) Discord Anda melalui webhook.
+- Menghapus cadangan (backup) lama secara otomatis setelah melewati jumlah hari tertentu untuk menghemat ruang penyimpanan pada disk lokal Anda.
 
 ### System requirements
-- Node.js v16 or higher.
-- The modified version of [mysqldump](https://github.com/bradzacher/mysqldump) in our `node_modules` directory to work with node v16 and above.
-- Recommended: PM2 to run the process.
+- Node.js versi 16 atau yang lebih tinggi.
+- Versi modifikasi dari mysqldump di dalam direktori node_modules agar dapat berfungsi dengan Node.js v16 ke atas.
+- Direkomendasikan: Menggunakan PM2 untuk menjalankan prosesnya.
 
-**Note:** This does require your local machine being turned on, the process to be running and a stable internet connection to work. If the backup fails at the pre-defined backup time, it won't run again until the following day.
+**Note:** Alat ini membutuhkan komputer lokal Anda dalam keadaan menyala, proses aplikasi sedang berjalan, dan koneksi internet yang stabil agar dapat berfungsi. Jika proses pencadangan gagal pada waktu yang telah ditentukan, proses tidak akan diulang kembali hingga jadwal di hari berikutnya.
 
 ### Installation
 ```
-git clone https://github.com/pixxies/Remote-MYSQL-Local-Database-Dumps.git
+git clone https://github.com/Gembuls/BackUP-DB.git
 npm install
 ```
 
-Change the values in `config_sample.json` to your details and rename the file to `config.json`.
+CUbah nilai-nilai di dalam file config_sample.json sesuai dengan data Anda, lalu ubah nama file tersebut menjadi `config.json`.
 ```js
 {
     "backup_filename_prefix": "bot_name_here",
@@ -39,14 +39,14 @@ Change the values in `config_sample.json` to your details and rename the file to
     "days_to_keep": 1
 }
 ```
-You'll need to create a Discord webhook in a channel and paste the link into the config file above.
+Anda perlu membuat webhook Discord terlebih dahulu di salah satu channel Anda, kemudian tempelkan (paste) tautan tersebut ke dalam file konfigurasi di atas.
 
-The `owner_id` is the Discord ID of the person the webhook will ping for notifications. You can make the webhook ping a role instead by prefixing a role ID with `&`, for example `&761916863847333928`.
+`owner_id` adalah ID Discord pengguna yang akan di-ping oleh webhook saat notifikasi dikirimkan. Anda juga bisa membuat webhook ini melakukan ping ke suatu role tertentu dengan menambahkan awalan `&` sebelum ID role, contohnya: `&761916863847333928`.
 
-Set the number of days to keep old dumps with the `days_to_keep` value in your `config.json` file.
+Atur jumlah hari untuk menyimpan file cadangan lama melalui nilai days_to_keep pada file `config.json` Anda.
 
 ### Startup
 
-1. Open a new terminal window in your project directory.
-2. Run `pm2 startup index.js --name mysql_backup --time`.
-3. You'll recieve confirmation of startup and all events in the logs. Run `pm2 logs mysql_backup` to see the logs.
+1. Buka jendela terminal baru di dalam direktori proyek Anda.
+2. Jalankan perintah: pm2 startup index.js --name mysql_backup --time.
+3. Anda akan menerima konfirmasi bahwa aplikasi telah berjalan dan semua aktivitas dapat dipantau melalui log. Jalankan pm2 logs mysql_backup untuk melihat log secara real-time.
